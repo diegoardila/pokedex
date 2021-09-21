@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="sidebarContent" class="col-2 px-0 d-none d-lg-block">
+            <app-sidebar-dashboard></app-sidebar-dashboard>                
+            <div id="hideSideBar" (click)="hideSideBar()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+        </div>
+        <div id="content" class="col-lg-10 px-0">
+            <div class="px-3">                
+                <div class="tab-active" *ngIf="tab == 'list'">
+                    <app-list></app-list>
+                </div>
+                <div class="tab-active" *ngIf="tab == 'team'">
+                    <app-team></app-team>
+                </div>
+                <div class="tab-active" *ngIf="tab == 'items'">
+                    <app-items></app-items>
+                </div>
+                <div class="tab-active" *ngIf="tab == 'moves'">
+                    <app-moves></app-moves>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

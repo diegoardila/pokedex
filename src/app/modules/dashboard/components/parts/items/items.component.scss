@@ -1,0 +1,32 @@
+@import "../../../../../../variables.scss";
+.container{
+    .dropdown{
+        button{
+            width: 250px;
+            background-color: $color-secondary;
+            border: 1px solid $color-primary;
+            border-radius: 50px;
+            color:$color-text-secondary;
+            font-family: $font-primary;
+            font-weight: 700;
+            padding: 10px 0;
+        }
+        .dropdown-menu{
+            width: 255px;
+            max-height: 250px;
+            overflow-y: scroll;
+            background-color: $color-primary;
+        }        
+        .dropdown-menu::-webkit-scrollbar{
+            width: 8px;
+        }
+        .dropdown-menu::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+        .dropdown-menu::-webkit-scrollbar-thumb{
+            border-radius: 5px;
+            background-color:rgba(200,200,200,.75);
+            width: 10px;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+@import "../../../../../variables.scss";
+.container-fluid{
+    background-color: $color-primary;
+    .row{
+        #sidebarContent.hide{
+            position: absolute;
+            transform: translateX(-100%);
+            #hideSideBar{
+                left: 100%;
+                transform: rotate(180deg);
+                margin-right: 0;
+            }
+        }
+        #sidebarContent{
+            transition: all .3s ease-in;
+            background-color: $color-secondary;
+            height: calc(100vh - 75px);
+            position: relative;
+            #hideSideBar{
+                transition: all .3s ease-in;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                position: absolute;
+                bottom:10%;
+                left: calc(100% - 15px);
+                color: $color-primary;
+                background-color:rgb(101,153,255);
+                i{
+                    margin-right: 2px;
+                }
+            }
+        }
+        #content{
+            height: calc(100vh - 75px);
+            overflow-y: scroll;
+            padding:0px 30px!important;
+        }
+        #content::-webkit-scrollbar{
+            width: 8px;
+        }
+        #content::-webkit-scrollbar-track{
+            background-color: transparent;
+        }
+        #content::-webkit-scrollbar-thumb{
+            border-radius: 5px;
+            background-color:rgba(200,200,200,.75);
+            width: 10px;
+        }
+    }
+}
+
+

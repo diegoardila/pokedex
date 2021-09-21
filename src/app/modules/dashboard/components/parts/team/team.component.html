@@ -1,0 +1,162 @@
+<div class="container">
+    <h4 *ngIf="equipoPoke.length==0" class="text-center text-color-secondary text-bold">Aún no tienes ningún pokémon agregado en tu equipo</h4>
+    <p *ngIf="equipoPoke.length==0" class="text-center text-color-secondary text-bold">Empieza pulsando el boton para agregar</p>    
+    <ng-container *ngIf="equipoPoke.length>0 && equipoPoke.length<=6">        
+        <ng-container class="row" *ngFor="let pokemon of equipoPoke">
+            <div class="row pokemon d-flex flex-row align-items-center">
+                <div class="control d-flex flex-row">                    
+                    <a (click)="edit(pokemon.id)" class="text-color-primary me-3"><i class="fas fa-edit"></i></a>
+                    <a (click)="delete(pokemon.id)" class="text-color-primary"><i class="fas fa-trash-alt"></i></a>
+                </div>
+                <div class="col-lg-4">
+                    <img src="{{pokemon.sprite}}" alt="" class="w-50 mx-auto d-block">
+                    <p class="text-color-primary text-bold text-center mb-1">{{ pokemon.name }}</p>
+                    <div class="d-flex flex-row w-100 justify-content-center">
+                        <ng-container *ngFor="let tipo of pokemon.types;let i = index">
+                            <ng-container *ngFor="let imagenTipo of type_img"> 
+                                <img src="{{ imagenTipo.img }}" style="height: auto;" class="{{i > 0 ? 'ms-2' : ''}}" *ngIf="imagenTipo.name == tipo.type.name" alt="">    
+                            </ng-container>
+                        </ng-container> 
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-color-primary text-bold">Movimientos</h5>                        
+                    <ng-container *ngFor="let move of equipoMoves">
+                        <ng-container *ngIf="move.pokemon==pokemon.id">                                                  
+                            <div class="d-flex flex-row align-items-center">
+                                <p class="text-color-primary text-bold mb-1" title="{{move.desc}}">{{ move.es }}</p>
+                                <img title="Movimiento {{move.type}}" src="{{move.type=='special' ? 'assets/img/tipos/especial.gif' : move.type=='physical' ? 'assets/img/tipos/fisico.gif' : move.type=='status' ? 'assets/img/tipos/estado.gif' : ''}}" height="15px" class="ms-2" alt="">
+                            </div>
+                        </ng-container>   
+                    </ng-container>
+                </div>
+                <div class="col-lg-4">
+                    <ng-container *ngFor="let ability of equipoAbilities">
+                        <ng-container *ngIf="ability.pokemon==pokemon.id">  
+                            <h5 class="text-color-primary text-bold">Habilidad</h5>
+                            <p class="text-color-primary text-bold mb-1" >{{ ability.es }}</p>
+                            <p class="text-color-primary text-medium mb-1" >{{ ability.desc }}</p>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn-primary w-100" id="btnAdd" *ngIf="equipoPoke.length<6" (click)="showAdd()"><i class="fas fa-plus-square"></i></button>
+        </div>
+    </div>
+    <div id="edit" class="d-none">
+        <form  action="#" #f="ngForm" (ngSubmit)="editPoke(f)" autocomplete="off">
+            <input type="hidden" name="id_poke" value="{{ id }}">     
+            <a class="text-color-secondary" onclick="document.getElementById('edit').classList.add('d-none')"><i class="fas fa-times"></i></a>
+            <h4 class="text-color-secondary text-bold text-center">Selecciona el nombre de Pokemon y rellena el resto de información</h4>
+            <div class="form-group">            
+                <input type="text" id="name" (keyup)="findPokeEdit(f)" onclick="document.getElementsByClassName('pokemon-finded-edit')[0].classList.remove('d-none')" ngModel name="name" class="px-4 w-100" required placeholder="Nombre de pokémon">
+                <div class="pokemon-finded-edit d-none">
+                    <ng-container *ngFor="let poke of pokemon">                        
+                        <a (click)="selectPoke(poke.name)">{{ poke.name }}</a>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="form-group">                                       
+                <label for="mov-1">Primer movimiento</label>
+                <select name="mov1" id="mov-1" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>                  
+                <label for="mov-1">Segundo movimiento</label>  
+                <select name="mov2" id="mov-2" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>
+                <label for="mov-1">Tercer movimiento</label>
+                <select name="mov3" id="mov-3" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container >
+                </select>
+                <label for="mov-1">Cuarto movimiento</label>
+                <select name="mov4" id="mov-4" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>                
+                <label for="mov-1">Habilidad</label>
+                <select name="ability" id="ability" ngModel>
+                    <option value="null" selected>Seleccione una habilidad</option>
+                    <ng-container *ngFor="let ability of abilities">
+                        <option value="{{ability.name}}">{{ability.es}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary py-1 px-4 text-bold">Guardar Pokémon</button>
+        </form>
+    </div>
+    <div id="addPoke" class="d-none">
+        <form  action="#" #fa="ngForm" (ngSubmit)="savePoke(fa)" autocomplete="off">            
+            <a class="text-color-secondary" onclick="document.getElementById('addPoke').classList.add('d-none')"><i class="fas fa-times"></i></a>
+            <h4 class="text-color-secondary text-bold text-center">Selecciona el nombre del pokémon y rellena la información</h4>
+            <div class="form-group">            
+                <input type="text" id="name_new" (keyup)="findPoke(fa)" onclick="document.getElementsByClassName('pokemon-finded')[0].classList.remove('d-none')" ngModel name="name_new" class="px-4 w-100" required placeholder="Nombre de pokémon">
+                <div class="pokemon-finded d-none">
+                    <div class="ng-container" *ngFor="let poke of pokemon">                        
+                        <a (click)="selectPoke(poke.name)">{{ poke.name }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">                                       
+                <label for="mov-1">Primer movimiento</label>
+                <select name="mov1_new" id="mov-1" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>                  
+                <label for="mov-1_new">Segundo movimiento</label>  
+                <select name="mov2_new" id="mov-2" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>
+                <label for="mov-1_new">Tercer movimiento</label>
+                <select name="mov3_new" id="mov-3" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container >
+                </select>
+                <label for="mov-1_new">Cuarto movimiento</label>
+                <select name="mov4_new" id="mov-4" ngModel>
+                    <option value="null" selected>Seleccione un movimiento</option>
+                    <ng-container *ngFor="let move of moves">
+                        <option [value]="move.name">{{move.es}} ({{move.power ? move.power : 'De efecto'}})</option>
+                    </ng-container>
+                </select>                
+                <label for="mov-1_new">Habilidad</label>
+                <select name="ability_new" id="ability" ngModel>
+                    <option value="null" selected>Seleccione una habilidad</option>
+                    <ng-container *ngFor="let ability of abilities">
+                        <option value="{{ability.name}}">{{ability.es}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary py-1 px-4 text-bold">Guardar Pokémon</button>
+        </form>
+    </div>
+    <div id="delete" class="d-none">
+        <div class="p-5 d-flex flex-column align-items-center">
+            <a class="text-color-secondary ms-auto" onclick="document.getElementById('delete').classList.add('d-none')"><i class="fas fa-times"></i></a>
+            <h5 class="text-color-secondary text-center">¿Está seguro que desa eleminar este pokémon?</h5>
+            <button (click)="deletePoke()" class="btn-primary py-1 px-4 text-bold">Eliminar Pokémon</button>
+        </div>       
+    </div>
+</div>

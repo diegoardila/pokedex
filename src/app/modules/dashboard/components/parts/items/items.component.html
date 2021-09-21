@@ -1,0 +1,39 @@
+<div class="container pt-5">
+    <div class="row">
+        <h4 class="text-color-primary text-center">Selecciona tipo movimiento atacante y tipo del pokémon receptor y pulsa calcular para ver la efectividad del movimiento</h4>
+        <div class="col-lg-6 d-flex flex-column align-items-center">
+           <p class="text-color-primary">Selecciona tipo de movimiento atacante</p>
+           <div class="dropdown">
+                <button class="btn-dropdown" type="button" id="dropdownMenuAttacker" data-bs-toggle="dropdown" aria-expanded="false">
+                    Selecciona tipo
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuAttacker">
+                    <li *ngFor="let tipo of tipos">
+                        <a class="dropdown-item" (click)="selectAttackType(tipo.name,tipo.es)">
+                            <img src="{{tipo.img}}" alt="" height="20px" class="d-block mx-auto">
+                        </a>
+                    </li>
+                </ul>
+           </div> 
+        </div>
+        <div class="col-lg-6 d-flex flex-column align-items-center mt-4 mt-lg-0">
+            <p class="text-color-primary">Selecciona tipo de pokémon receptor</p>
+            <div class="dropdown">
+                <button class="btn-dropdown" type="button" id="dropdownMenuReceptor" data-bs-toggle="dropdown" aria-expanded="false">
+                    Selecciona tipo
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuReceptor">
+                    <li *ngFor="let tipo of tipos">
+                        <a class="dropdown-item mb-2" (click)="selectReceptorType(tipo.name,tipo.es)">
+                            <img src="{{tipo.img}}" alt="" height="20px" class="d-block mx-auto">
+                        </a>
+                    </li>
+                </ul>
+           </div> 
+        </div>
+        <div class="col-12 text-center">
+            <button class="btn-primary text-bold py-1 px-4 mx-auto mt-3" (click)="calcular()">Calcular</button>
+            <h4 class="text-color-secondary text-semibold mt-3">{{ resultado }}</h4>
+        </div>
+    </div>
+</div>

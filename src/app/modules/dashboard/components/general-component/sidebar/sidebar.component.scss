@@ -1,0 +1,16 @@
+@import '../../../../../../variables.scss';
+a.flex-row{
+    justify-content: start;
+    align-items: center;
+    cursor: pointer;
+    i{
+        font-size: 3rem;
+    }
+    i.fa-dragon{
+        font-size: 2rem;
+    }
+}
+a.flex-row.selected{
+    background-color: rgba($color: #fff, $alpha: .1);
+    border-right: 5px solid $color-primary;
+}

@@ -1,0 +1,106 @@
+@import "../../../../../../variables.scss";
+table{
+    width: 100%;
+    color: $color-text-secondary;
+    font-family: $font-primary; 
+    background: linear-gradient(to right, rgba(255,255,255,.15),rgba(255,255,255,.25));
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    td{
+        color: $color-text-secondary;
+        .title{
+            display: none;
+        }
+    }
+    .mat-header-cell{
+       color: $color-text-secondary;
+    }
+    td.mat-column-name{
+        text-transform: capitalize;        
+        font-weight: 900;
+    }  
+    td.mat-column-id{       
+        font-weight: 900;
+    }
+    th.mat-column-id{       
+        border-top-left-radius: 8px;
+    }
+    th.mat-column-pp{       
+        border-top-right-radius: 8px;
+    }
+    td.mat-column-desc{       
+        width: 40%;
+    }
+}
+        
+mat-paginator{
+    background: linear-gradient(to right, rgba(255,255,255,.30),rgba(255,255,255,.50));
+    color: $color-text-secondary;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 100%;
+    font-size: 1rem;
+    font-family: $font-primary;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: linear-gradient(to right, rgba(255,255,255,.15),rgba(255,255,255,.25)); 
+    button{
+        .mat-button-wrapper{
+            background-color:$color-secondary;
+            color: $color-text-secondary;
+        }
+    }
+    .mat-select-value,.mat-select-arrow-wrapper,.mat-form-field-label-wrapper{
+        color: $color-text-secondary;
+    }
+}
+mat-form-field{
+    .mat-form-field-underline{
+        display: none;
+    }
+    .mat-form-field-flex{
+        padding-top: 0;
+    }
+    input{
+        color:$color-text-primary;
+        font-family: $font-primary;
+        margin-bottom: 15px;
+        border: 2px solid $color-secondary;
+        border-radius: 50px;
+        padding: 0 15px;
+        height: 30px;
+        margin-bottom:0;
+        caret-color: transparent!important;
+    }
+    input::placeholder{
+        color:$color-text-primary;
+        font-family: $font-primary;
+    }
+}
+@media only screen and (max-width:$breakpoint){
+    .container{
+        padding:0;
+        table{
+            td{
+                width: 100%!important;
+                display: block;
+                padding:5px 20px;
+                .title{
+                    display: inline-block;
+                }
+            }
+            td.mat-column-id{
+                display: none;
+            }
+            td.mat-column-name{
+                font-size: 1.2rem;
+            }
+            th{
+                display: none;
+            }
+            tbody{
+                width: 100%; 
+            }
+        }
+    }
+}

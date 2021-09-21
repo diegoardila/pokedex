@@ -1,0 +1,46 @@
+@import '../../../variables.scss';
+.navbar_web{
+    display: block;
+    background-color: $color-primary;
+    padding: 5px;
+    box-shadow:  3px 6px 8px $color-shadow;
+    #logout{
+        position: absolute;
+        right: 0;
+        top: 55px;
+        background-color: $color-secondary;
+        box-shadow:  3px 6px 8px $color-shadow;
+    }
+    #collapseControls{
+        h5{
+            text-transform: capitalize;
+        }
+    }
+}
+.navbar_mobile{
+    display: none;
+}
+@media only screen and (max-width:$breakpoint) {
+    .navbar_web{
+        display: none;
+    }
+    .navbar_mobile{
+        display: block;
+        position: relative;
+        background-color: $color-primary;
+        .col-12{
+            a{
+                i{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        #sidebar{
+            position: absolute;
+            background-color: $color-secondary-solid;
+            top: 60px;
+            left: 0;
+            z-index: 5;
+        }
+    }
+}

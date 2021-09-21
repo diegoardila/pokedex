@@ -1,0 +1,18 @@
+<div class="w-100">
+    <a href="" class="d-flex flex-row py-4 px-3 {{ vista=='list' ? 'selected' : '' }}" (click)="changeTab('list')">
+        <i class="fas fa-clipboard-list me-3"></i>
+        <h5 class="text-color-primary text-semibold mb-0">Lista de Pokémon</h5>
+    </a>
+    <a href="" class="d-flex flex-row py-4 px-3 {{ vista=='team' ? 'selected' : '' }}" (click)="changeTab('team')">
+        <i class="fas fa-dragon me-3"></i>
+        <h5 class="text-color-primary text-semibold mb-0">Creador de equipos</h5>
+    </a>
+    <a href="" class="d-flex flex-row py-4 px-3 {{ vista=='items' ? 'selected' : '' }}" (click)="changeTab('items')">
+        <i class="fas fa-file-alt me-3"></i>
+        <h5 class="text-color-primary text-semibold mb-0">Calculadora de tipos</h5>
+    </a>
+    <a href="" class="d-flex flex-row py-4 px-3 {{ vista=='moves' ? 'selected' : '' }}" (click)="changeTab('moves')">
+        <i class="fas fa-bolt me-3"></i>
+        <h5 class="text-color-primary text-semibold mb-0">Movimientos</h5>
+    </a>
+</div>

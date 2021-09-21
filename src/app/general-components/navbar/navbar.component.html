@@ -1,0 +1,47 @@
+<div class="container-fluid navbar_web">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="/assets/img/pokedex_logo.png" class="w-100" alt="">
+            </div>
+            <div class="col-10 d-flex flex-row align-items-center position-relative">
+                <ng-container *ngIf="session">
+                    <i class="fas fa-users text-color-primary me-3" title="Número de pokemon en tu equipo"></i>
+                    <h5 class="text-color-secondary text-bold mb-0 me-4">{{ totalTeam }}</h5>
+                    <i class="fas fa-window-maximize text-color-primary me-3" title="Número total de pokemon"></i>
+                    <h5 class="text-color-secondary text-bold mb-0 me-4">{{ totalPokemon }}</h5>                    
+                    <button id="collapseControls" class="ms-auto border-0 bg-transparent d-flex flex-row align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#logout" aria-expanded="false" aria-controls="logout">
+                        <i class="fas fa-cog text-color-primary ms-auto me-4" title="Ajustes"></i>
+                        <i class="fas fa-user text-color-primary me-3" title="Usuario"></i>
+                        <h5 class="text-color-secondary text-bold mb-0">{{ user }}</h5>
+                    </button>
+                    <div class="collapse p-4" id="logout">
+                        <a class="btn-primary text-bold py-1 px-4" (click)="logout()">Cerrar sesión</a>
+                    </div>                    
+                </ng-container>             
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid navbar_mobile">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex flex-row align-items-center">                
+                <a onclick="document.getElementById('sidebar').classList.toggle('d-none')"><i class="fas fa-bars text-color-secondary"></i></a>
+                <img src="/assets/img/pokedex_logo.png" class="w-50 ms-auto" alt="">
+            </div>
+        </div>
+        <div id="sidebar" class="d-none">
+            <app-sidebar></app-sidebar>
+            <div class="w-100">
+                <a class="btn-primary mx-auto mt-1 mb-3 d-block text-bold py-1 px-4" (click)="logout()">Cerrar sesión</a>
+            </div>   
+            <div class="d-flex flex-row justify-content-center mb-3">
+                <i class="fas fa-users text-color-primary me-3" title="Número de pokemon en tu equipo"></i>
+                <h5 class="text-color-secondary text-bold mb-0 me-4">{{ totalTeam }}</h5>
+                <i class="fas fa-window-maximize text-color-primary me-3" title="Número total de pokemon"></i>
+                <h5 class="text-color-secondary text-bold mb-0 me-4">{{ totalPokemon }}</h5>
+            </div>
+        </div>
+    </div>
+</div>
